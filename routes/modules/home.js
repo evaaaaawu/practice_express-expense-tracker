@@ -1,7 +1,8 @@
 const router = require('express').Router()
 
+// Read all
 router.get('/', (req, res) => {
-  res.redirect('/records')
+  res.send('read all')
 })
 
 module.exports = router

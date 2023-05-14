@@ -1,10 +1,8 @@
 const router = require('express').Router()
 
 // Create
-
-// Read all
-router.get('/', (req, res) => {
-  res.send('records: read all')
+router.get('/new', (req, res) => {
+  res.send('new')
 })
 
 // Read One

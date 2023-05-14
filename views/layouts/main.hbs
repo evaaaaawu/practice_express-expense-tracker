@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>expense-tracker</title>
+
+  {{!-- link css files here --}}
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+</head>
+
+<body>
+  <header>
+    {{!-- navBar --}}
+    <nav class="navbar navbar-dark bg-primary justify-content-between">
+      <a class="navbar-brand" href="/">
+        {{#if isAuthenticated}}{{ user.name}}的{{/if}}記帳本
+      </a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-light">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light">Login</a>
+      {{/if}}
+    </nav>
+  </header>
+
+  {{!-- partial template --}}
+  <main>
+    <div class="container mt-3">
+      {{{ body }}}
+    </div>
+  </main>
+
+  {{!-- include javascript files here --}}
+  <script src="/javascripts/popper.js"></script>
+  <script src="/javascripts/bootstrap.js"></script>
+</body>
+
+</html>
