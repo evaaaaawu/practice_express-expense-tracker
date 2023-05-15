@@ -1,1 +1,45 @@
-<h2>index page</h2>
+<div class="container row">
+  <div class="top col-8 mx-auto mt-4">
+    <form class="input-group" action="/search" method="get">
+      <label class="input-group-text" for="categoryId">類別</label>
+      <select class="form-select" name="categoryId" id="categoryId" onchange="submit()">
+        <option value="">全部</option>
+        {{#each catagories}}
+        <option value="{{ this._id }}" {{#if this.selected}} selected {{/if}}>{{ this.name }}</option>
+        {{/each}}
+      </select>
+    </form>
+    <div class="d-flex justify-content-center mt-5 align-items-center">
+      <h4 class="me-3 fw-normal">總金額</h4>
+      <h1 class="fs-1 badge bg-secondary">${{totalAmount}}</h1>
+    </div>
+  </div>
+  <div class="col-8 mx-auto">
+    <table class="table table-light mt-5">
+      <tbody>
+        <tr>
+          {{#each records}}
+          <td class="row border-secondary border-bottom align-items-center">
+            <div class="col-1">
+              <i class="{{this.categoryId.icon}} text-secondary"></i>
+            </div>
+            <div class="col-3">
+              <h5 class="text-start m-0">{{this.name}}</h5>
+              <p class="my-1">{{this.date}}</p>
+            </div>
+            <h3 class="col-4">${{this.amount}}</h3>
+            <div class="col-3">
+              <a href="/records/edit/{{this._id}}" class="btn btn-primary btn-sm py-2">修改</a>
+              <form action="/records/{{this._id}}?_method=DELETE" method="post" class="d-inline"
+                onclick="return confirm('Are you sure?')">
+                <button class="btn btn-danger btn-sm py-2" type="submit">刪除
+                </button>
+              </form>
+            </div>
+          </td>
+          {{/each}}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

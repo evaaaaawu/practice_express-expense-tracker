@@ -14,16 +14,23 @@
 <body>
   <header>
     {{!-- navBar --}}
-    <nav class="navbar navbar-dark bg-primary justify-content-between">
+    <nav class="navbar navbar-dark bg-primary justify-content-between p-3">
       <div class="container">
-        <a class="navbar-brand" href="/">
-          {{#if isAuthenticated}}{{ user.name}}的{{/if}}記帳本
-        </a>
-        {{#if isAuthenticated}}
-        <a href="/users/logout" class="btn btn-outline-light">Logout</a>
-        {{else}}
-        <a href="/users/login" class="btn btn-outline-light">Login</a>
-        {{/if}}
+        <div>
+          <a class="fs-4 navbar-brand" href="/">
+            {{#if isAuthenticated}}{{ user.name}}的{{/if}}記帳本
+          </a>
+          {{#if isAuthenticated}}
+          <a href="/records/new" class="fs-4 badge btn btn-outline-light">記一筆$$</a>
+          {{/if}}
+        </div>
+        <div>
+          {{#if isAuthenticated}}
+          <a href="/users/logout" class="fs-5 btn btn-outline-light">Logout</a>
+          {{else}}
+          <a href="/users/login" class="fs-5 btn btn-outline-light">Login</a>
+          {{/if}}
+        </div>
       </div>
     </nav>
   </header>
