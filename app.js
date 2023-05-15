@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const flash = require('connect-flash')
 
 // 僅在非正式環境時, 使用 dotenv
@@ -32,6 +33,7 @@ app.use(session({
   saveUninitialized: true //強制將未初始化的 session 存回 session store。未初始化表示這個 session 是新的而且沒有被修改過，例如未登入的使用者的 session。
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
