@@ -30,6 +30,12 @@ app.use(session({
   saveUninitialized: true //強制將未初始化的 session 存回 session store。未初始化表示這個 session 是新的而且沒有被修改過，例如未登入的使用者的 session。
 }))
 usePassport(app)
+app.use((req, res, next) => {
+  // 你可以在這裡 console.log(req.user) 等資訊來觀察
+  res.locals.isAuthenticated = req.isAuthenticated() //res.locals 是 express.js 幫我們開的一條捷徑，放在 res.locals 裡的資料，所有的 view 都可以存取
+  res.locals.user = req.user
+  next()
+})
 app.use(routes)
 
 // start and listen on the Express server
