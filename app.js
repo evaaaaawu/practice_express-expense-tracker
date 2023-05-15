@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
+const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 
 // 僅在非正式環境時, 使用 dotenv
@@ -30,6 +31,7 @@ app.use(session({
   resave: false, //當設定為 true 時，會在每一次與使用者互動後，強制把 session 更新到 session store 裡。
   saveUninitialized: true //強制將未初始化的 session 存回 session store。未初始化表示這個 session 是新的而且沒有被修改過，例如未登入的使用者的 session。
 }))
+app.use(bodyParser.urlencoded({ extended: true }))
 usePassport(app)
 app.use(flash())
 app.use((req, res, next) => {
