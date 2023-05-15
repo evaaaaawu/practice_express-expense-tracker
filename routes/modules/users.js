@@ -2,12 +2,12 @@ const router = require('express').Router()
 
 // Login Page
 router.get('/login', (req, res) => {
-  res.send('Login')
+  res.render('login')
 })
 
 // Register Page
 router.get('/register', (req, res) => {
-  res.send('Register')
+  res.render('register')
 })
 
 module.exports = router
