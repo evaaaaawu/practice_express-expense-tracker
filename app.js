@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
+const flash = require('connect-flash')
 
 // 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
@@ -30,10 +31,13 @@ app.use(session({
   saveUninitialized: true //強制將未初始化的 session 存回 session store。未初始化表示這個 session 是新的而且沒有被修改過，例如未登入的使用者的 session。
 }))
 usePassport(app)
+app.use(flash())
 app.use((req, res, next) => {
   // 你可以在這裡 console.log(req.user) 等資訊來觀察
   res.locals.isAuthenticated = req.isAuthenticated() //res.locals 是 express.js 幫我們開的一條捷徑，放在 res.locals 裡的資料，所有的 view 都可以存取
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')  // 設定 success_msg 訊息
+  res.locals.warning_msg = req.flash('warning_msg')  // 設定 warning_msg 訊息
   next()
 })
 app.use(routes)
