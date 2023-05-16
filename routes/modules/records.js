@@ -113,5 +113,13 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete
+router.delete('/:id', (req, res) => {
+  const userId = req.user._id
+  const _id = req.params.id
+
+  return Record.deleteOne({ _id, userId })
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
 
 module.exports = router

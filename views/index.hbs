@@ -31,7 +31,7 @@
             <div class="col-3">
               <a href="/records/edit/{{this._id}}" class="btn btn-primary btn-sm py-2">修改</a>
               <form action="/records/{{this._id}}?_method=DELETE" method="post" class="d-inline"
-                onclick="return confirm('Are you sure?')">
+                onclick="return confirm('確定要刪除該筆紀錄？')">
                 <button class="btn btn-danger btn-sm py-2" type="submit">刪除
                 </button>
               </form>
