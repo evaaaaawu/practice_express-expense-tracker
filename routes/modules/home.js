@@ -63,7 +63,7 @@ router.get('/search', (req, res) => {
           return res.render('index', { records, catagories, totalAmount })
         })
     })
-    .catch(err => console.error(err))
+    .catch(err => console.log(err))
 })
 
 module.exports = router
